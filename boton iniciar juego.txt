@@ -1,0 +1,79 @@
+ private void jToggleButton1ActionPerformed(java.awt.event.ActionEvent evt) {                                               
+        int cantJugadores = 0;
+        boolean modoJuego;
+        diccionario = new Diccionario();
+        
+        
+      /**
+         * Se muestra una ventana JOptionPane InputDialog con el cual el usuario
+         * ingresara la cantidad de jugadores que tendra la partida, se captura
+         * lo ingresado en una String
+         */
+        do {
+            String jugadores = JOptionPane.showInputDialog(this,
+                    "Ingrese la cantidad de jugadores (2 a 4 jugadores):");
+            if (jugadores == null) {
+                return; // Usuario canceló
+            }
+            //despues se transforma esa string a un Int mediante el metodo de integer.parseint
+            try {
+                cantJugadores = Integer.parseInt(jugadores);
+                if (cantJugadores <= 1) {
+                    JOptionPane.showMessageDialog(this, "Debe "
+                            + "haber más de un jugador.", "Error",
+                            JOptionPane.ERROR_MESSAGE);
+                }
+            } catch (NumberFormatException e) {
+                JOptionPane.showMessageDialog(this, "Por favor "
+                        + "ingrese un número entero válido.", "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+        } while (cantJugadores <= 1);
+       
+        
+        
+        // PIDE LOS  NOMBRES DE JUGADORES PARA CREARLOS Y GUARDARLOS EN UN ARRAYL
+        ArrayList<Jugador> jugadores = new ArrayList<>();
+                
+        for (int i = 0; i < cantJugadores; i++) {
+            String nombre;
+            do {
+                nombre = JOptionPane.showInputDialog(this,
+                    "Ingrese el nombre del jugador " + (i + 1) + ": ");
+            } while (nombre.isEmpty());
+
+            Jugador jugador = new Jugador(nombre);
+            jugadores.add(jugador);
+        }
+        
+        //OPTION PANEL PARA ELEGIR EL MODO
+        //ESTE arreglo contiene las opciones que tendra para elegir el panel
+        String[] options = {"Regular", "Experto"};
+        
+        //este int guardara el boton presionado. 0 si eleigio regular, 1 experto
+        int n = JOptionPane.showOptionDialog(null,
+                "Elige el modo de juego",
+                "Selección modo de juego",
+                JOptionPane.YES_NO_CANCEL_OPTION,
+                JOptionPane.DEFAULT_OPTION,
+                null,
+                options,
+                options[1]);
+        
+        
+        if (n == 0) {
+            System.out.println("elegistess modo  regular");
+            modoJuego = true;
+            
+            //crear juego
+            //jugadores,diccionario,modo
+            //juego = new MagoDeLasPalabras(jugadores, diccionario, modoJuego)
+            
+        } else {
+            System.out.println("elegistesss modeo experto");
+            modoJuego = false;
+            //crear juego
+            //jugadores,diccionario,modo
+        }
+        
+    }           
