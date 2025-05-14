@@ -1,0 +1,26 @@
+ public void sugerirAgregarPalabra(String palabra) {
+        int opcion = JOptionPane.showConfirmDialog(
+                null,
+                "¿Deseas agregar la palabra " + palabra + " al diccionario?",
+                "Palabra no encontrada",
+                JOptionPane.YES_NO_OPTION);
+
+        if (opcion == JOptionPane.YES_OPTION) {
+            diccionario.agregarPalabra(palabra);
+            mostrarMensaje("Se añadió la palabra " + palabra + " al diccionario.");
+        }
+
+    }
+    
+
+
+///////////////////boton
+ if (palabraFormada.getText().isEmpty()) {
+            mostrarMensaje("No ingresaste una palabra");
+        } else {
+            juego.setPalabraIngresada(obtenerPalabraIngresada());
+            juego.jugarTurnoActual(); // avanzar turno
+
+        }
+
+        palabraFormada.setText("");
